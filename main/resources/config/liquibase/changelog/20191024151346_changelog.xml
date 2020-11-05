@@ -1,0 +1,32 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="root (generated)" id="1571908431326-3">
+        <createTable tableName="video_to_stand">
+            <column autoIncrement="true" name="id" type="BIGINT">
+                <constraints primaryKey="true" primaryKeyName="video_to_standPK"/>
+            </column>
+            <column name="end_date" type="datetime"/>
+            <column name="is_uploaded" type="BIT">
+                <constraints nullable="false"/>
+            </column>
+            <column name="start_date" type="datetime"/>
+            <column name="stand_id" type="BIGINT"/>
+            <column name="video_file_id" type="BIGINT"/>
+        </createTable>
+    </changeSet>
+    <changeSet author="root (generated)" id="1571908431326-4">
+        <addForeignKeyConstraint baseColumnNames="stand_id" baseTableName="video_to_stand" constraintName="FK8ctvjc9q4rd8ldaqj8e473ha3" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="stand" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1571908431326-5">
+        <addForeignKeyConstraint baseColumnNames="video_file_id" baseTableName="video_to_stand" constraintName="FKsw7prudn6le4m23b32ro4vrfg" deferrable="false" initiallyDeferred="false" referencedColumnNames="id" referencedTableName="video_file" validate="true"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1571908431326-9">
+        <dropColumn columnName="end_date" tableName="video_file"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1571908431326-10">
+        <dropColumn columnName="is_uploaded" tableName="video_file"/>
+    </changeSet>
+    <changeSet author="root (generated)" id="1571908431326-11">
+        <dropColumn columnName="start_date" tableName="video_file"/>
+    </changeSet>
+</databaseChangeLog>

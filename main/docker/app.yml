@@ -1,0 +1,38 @@
+version: '2'
+services:
+  stands_videoupload-app:
+    image: stands_videoupload
+    privileged: true
+    volumes:
+      # - log-data:/usr/share/elasticsearch/data
+      - videos:/var/lib/docker/volumes/docker_videos/_data
+      - temp:/var/lib/docker/volumes/docker_temp/_data/
+      - '/etc/timezone:/etc/timezone:ro'
+      - '/etc/localtime:/etc/localtime:ro'
+    environment:
+      - _JAVA_OPTIONS=-Xmx4G -Xms2G
+      - SPRING_PROFILES_ACTIVE=prod,swagger
+      - MANAGEMENT_METRICS_EXPORT_PROMETHEUS_ENABLED=true
+      - SPRING_DATASOURCE_URL=jdbc:mysql://vm-dbn01.technodom.kz:3306/standvideoupload?useUnicode=true&characterEncoding=utf8&useSSL=false&useJDBCCompliantTimezoneShift=true&useLegacyDatetimeCode=false&serverTimezone=UTC
+      - SPRING_DATASOURCE_USERNAME=root
+      - SPRING_DATASOURCE_PASSWORD=g7nkn_SWwid
+      - JHIPSTER_SLEEP=10 # gives time for other services to boot before the application
+      - APPLICATION_VIDEOSDIR_FILEPATH=/var/lib/docker/volumes/docker_videos/_data
+      - APPLICATION_VIDEOSDIR_TEMPORARYMOUNTFOLDER=/var/lib/docker/volumes/docker_temp/_data
+      - APPLICATION_REMOTEDIR_FILEPATH=bonus
+      - APPLICATION_ACTIVEDIRECTORY_LOGIN=zkanew
+      - APPLICATION_ACTIVEDIRECTORY_PASSWORD=wjgs_5rx
+    ports:
+      - 8181:8181
+    cap_add:
+      - SYS_ADMIN
+      - DAC_READ_SEARCH
+    networks:
+      tms_docker-transport:
+        ipv4_address: 172.28.0.13
+volumes:
+  videos:
+  temp:
+networks:
+  tms_docker-transport:
+    external: true

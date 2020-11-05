@@ -1,0 +1,16 @@
+<?xml version="1.1" encoding="UTF-8" standalone="no"?>
+<databaseChangeLog xmlns="http://www.liquibase.org/xml/ns/dbchangelog" xmlns:ext="http://www.liquibase.org/xml/ns/dbchangelog-ext" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://www.liquibase.org/xml/ns/dbchangelog-ext http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-ext.xsd http://www.liquibase.org/xml/ns/dbchangelog http://www.liquibase.org/xml/ns/dbchangelog/dbchangelog-3.6.xsd">
+    <changeSet author="root (generated)" id="1572580060998-4">
+        <addColumn tableName="video_to_stand">
+            <column name="is_failed_to_delete" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="root (generated)" id="1572580060998-5">
+        <addColumn tableName="video_to_stand">
+            <column name="is_failed_to_upload" type="bit"/>
+        </addColumn>
+    </changeSet>
+    <changeSet author="root (generated)" id="1572580060998-1">
+        <dropNotNullConstraint columnDataType="boolean" columnName="is_uploaded" tableName="video_to_stand"/>
+    </changeSet>
+</databaseChangeLog>
